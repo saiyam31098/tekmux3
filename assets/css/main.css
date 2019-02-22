@@ -114,11 +114,18 @@ body {
 
 @media (max-width: 767px) {
    .tekmux-title {
-    font-size: 18px;
+    font-size: 56px;
   }
-   .tekmux-title {
-    font-size: 46px;
+  .d1, .d2 {
+    font-size: 35px;
   }
+  .d2 {
+    padding-top: 20px;
+  }
+  .footer_title, .footer_box_body {
+    float: left;
+  }
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1737,9 +1744,9 @@ header .logo img {
 }
 header ul.menu li a.nav-link {
   padding: 20px 12px !important;
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: 1px;
-  font-weight: 400;
+  font-weight: 500;
   display: block;
   text-transform: uppercase;
   color: #ffffff;
@@ -1845,6 +1852,7 @@ footer {
 footer .footer_box {
   position: relative;
   margin-top: 50px;
+  float: right;
 }
 footer .footer_box h4.footer_title {
   text-transform: uppercase;
@@ -1896,7 +1904,7 @@ footer ul.instagram_list li {
   display: inline-block;
   width: 30%;
   margin: 0 0 2% 2%;
-  float: left;
+  float: right;
 }
 footer .newsletter_form .form-control {
   background-color: #1f1039;
