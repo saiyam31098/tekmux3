@@ -25,9 +25,12 @@
 -------------------------------------------------------- */
 /* ----------------IMPORT GOOGLE FONTS ------------------- */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900");
+
+/* Header */
+
 /* ----------------Text Fonts ------------------- */
 body {
-  font-size: 14px;
+  font-size: 16.75px;
   line-height: 25px;
   font-weight: 400;
   font-family: "Montserrat", sans-serif;
@@ -44,17 +47,50 @@ body {
     font-size: 120px;
     font-weight: 900;
     line-height: 1.1;
-    color: #f50136;
+    color: #F2D91A;
     -webkit-transform: translateY(20px);
     transform: translateY(20px);
     padding-top: 15px;
     -webkit-transition: all 0.4s 600ms ease-in-out;
-    transition: all 0.4s 600ms ease-in-out;
+    transition: all 0.6s 600ms ease-in-out;
     font-family: 'Luckiest Guy', cursive;
 
     animation: glowing 2s linear infinite;
 }
 
+
+
+@import "nib"
+
+    .animal{
+      
+}
+
+
+
+
+
+
+@media only screen and (max-device-width: 480px) {
+   
+    
+    .wrap{
+        display: none;
+  height: 290px;
+        width: 290px;
+        padding: 0em 20em 0em -20em;
+        
+
+}
+       /* styles for mobile browsers smaller than 480px; (iPhone) */
+    }
+.wrap
+{
+    height: 290px;
+
+  margin: 0% 80% 0% 36%;
+ 
+}
 /**/
 
 .bgg {
@@ -216,10 +252,11 @@ ul.nosyely_list {
   width: 30px;
   content: " ";
   position: absolute;
-  border-top: solid 3px #f50136;
+  border-top: solid 3px #F2D91A;
   left: 0;
   top: 0;
 }
+
 
 .countdown {
   text-align: center;
@@ -229,7 +266,7 @@ ul.nosyely_list {
   display: inline-block;
   padding: 25px;
   min-width: 120px;
-  background-color: #F44336;
+  background-color: #F2D91A;
   color: #ffffff;
   font-size: 48px;
   font-weight: 600;
@@ -1718,7 +1755,168 @@ img {
 .mb-150 {
   margin-bottom: -150px;
 }
+/*Animation last*/
+//  settings
+baseline= 28px
+color= {
+  nuotron: #f35635,
+  background: #292e43,
+  text: {
+    normal: #fff,
+    low: rgba(255, 255, 255, .63)
+  },
+  selection: rgba(0, 0, 0, .21)
+}
+font= {
+  family: 'Muli',
+  weight: {
+    regular: 400,
+    bold: 800
+  },
+  size: {
+    headline: 48px,
+    body: 18px
+  }
+}
+transition= {
+  easing: cubic-bezier(0.190,1.000,0.220,1.000),
+  duration: 1.2s
+}
+nuotron= {
+  size: baseline*3,
+  stroke: 18px,
+  dot: 24px,
+  duration: transition.duration,
+  twist: 4,
+  rotation: 45deg
+}
 
+//  base
+*, *:before, *:after
+  box-sizing: border-box
+html, body
+  width: 100%
+  height: 100%
+body
+  position: relative
+  direction: ltr
+  text-align: center
+  font-family: font.family, sans-serif
+  font-size: font.size.body
+  font-weight: font.weight.regular
+  line-height: baseline
+  background-color: color.background
+  color: color.text.normal
+  -webkit-font-smoothing: antialiased
+::selection
+  background-color: color.selection
+  color: color.text.normal
+::-moz-selection
+  background-color: color.selection
+  color: color.text.normal
+
+//  nuotron
+#nuotron
+  top: 50%
+  left: 50%
+  width: nuotron.size
+  height: nuotron.size
+  margin-top: -(nuotron.size*.5)
+  margin-left: -(nuotron.size*.5)
+  transform: rotate(nuotron.rotation)
+  &, & *, & *:before
+    display: block
+    position: absolute
+  .ellipse, .dot
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+  //  ellipse
+  .ellipse
+    border: nuotron.stroke solid color.nuotron
+    border-radius: 50%
+
+  //  dot
+  .dot
+    animation: dotRotate nuotron.duration*nuotron.twist linear infinite
+    @keyframes dotRotate
+      100%
+        transform: rotate(360deg)
+    &:before
+      content: ''
+      top: -(nuotron.dot + nuotron.stroke)
+      left: 50%
+      width: nuotron.dot
+      height: nuotron.dot
+      margin-left: -(nuotron.dot*.5)
+      border-radius: 50%
+      background-color: color.nuotron
+      animation: dotEffect nuotron.duration ease-in-out infinite
+      @keyframes dotEffect
+        50%
+          top: nuotron.size + nuotron.stroke
+        0%, 50%, 100%
+          transform: scale(1)
+        25%
+          transform: scale(.5)
+        75%
+          transform: scale(1.5)
+
+//  text
+#text
+  nuotron.safeArea= nuotron.size + nuotron.stroke*2 + nuotron.dot*2 + baseline*.5
+  top: 50%
+  left: 50%
+  width: nuotron.safeArea
+  height: nuotron.safeArea
+  margin-top: -(nuotron.safeArea)*.5
+  margin-left: -(nuotron.safeArea)*.5
+  &, & > *
+    display: block
+    position: absolute
+    white-space: nowrap
+    transition: all transition.duration transition.easing
+
+  //  hover and website
+  .hover, .website
+    top: 100%
+    left: 50%
+    letter-spacing: 2px
+    transform: translateX(-50%)
+    color: color.text.low
+  .website
+    margin-top: baseline
+    opacity: 0
+
+  //  nuotron and agency
+  .nuotron, .agency
+    font-size: font.size.headline
+    font-weight: font.weight.bold
+    line-height: nuotron.safeArea
+    letter-spacing: 30px
+    color: color.text.normal
+    opacity: 0
+  .nuotron
+    right: 100%
+    margin-right: -34px
+  .agency
+    left: 100%
+
+/
+#text:hover
+  .nuotron, .agency
+    letter-spacing: 14px
+    opacity: 1
+  .nuotron
+    margin-right: -18px
+  .hover
+    margin-top: baseline
+    opacity: 0
+  .website
+    margin-top: 0
+    opacity: 1
 /*  ----------------------------------------------------
 2. HEADER
 -------------------------------------------------------- */
@@ -1736,12 +1934,15 @@ header .menu {
 header .logo {
   padding-top: 0;
   padding-bottom: 0;
+  background-color: white;
+
 }
 header .logo img {
   float: left;
   max-width: 160px;
   margin-right: 3px;
 }
+
 header ul.menu li a.nav-link {
   padding: 20px 12px !important;
   font-size: 15px;
@@ -1752,7 +1953,7 @@ header ul.menu li a.nav-link {
   color: #ffffff;
 }
 header ul.menu li a.nav-link:hover {
-  color: #f50136;
+  color: #F2D91A;
 }
 header ul.menu .search_btn {
   padding: 16px 8px !important;
@@ -1834,6 +2035,8 @@ header.sticky_header {
   }
   header .container {
     padding: 15px !important;
+
+
   }
 
   header li > ul {
@@ -1846,27 +2049,29 @@ header.sticky_header {
 3 Footer
 -------------------------------------------------------- */
 footer {
-  padding: 50px 0 100px;
+  padding: 0 100px;
   background-color: #0b031b;
 }
 footer .footer_box {
   position: relative;
   margin-top: 50px;
-  float: right;
+  float:none;
 }
 footer .footer_box h4.footer_title {
   text-transform: uppercase;
   padding: 10px 0;
   font-size: 18px;
   color: #ffffff;
+
 }
 footer .footer_box h4.footer_title:before {
   width: 30px;
   content: " ";
   position: absolute;
-  border-top: solid 3px #f50136;
+  border-top: solid 3px #F2D91A;
   left: 0;
   top: 0;
+
 }
 footer .footer_header {
   margin-bottom: 30px;
@@ -1881,18 +2086,18 @@ footer .footer_social li {
   margin: 5px;
 }
 footer .footer_social li a {
-  border: solid 1px #f50136;
+  border: solid 1px #F2D91A;
   display: block;
   border-radius: 50px;
   padding: 7px 0;
   font-size: 24px;
-  color: #f50136;
+  color: ##F2D91A;
   width: 40px;
   height: 40px;
   text-align: center;
 }
 footer .footer_social li a:hover {
-  background-color: #f50136;
+  background-color: ##F2D91A;
   color: #ffffff;
 }
 footer ul.instagram_list {
@@ -2003,8 +2208,8 @@ footer .newsletter_form .form-control {
 }
 
 .btn-primary {
-  background-color: #f50136;
-  border: solid 1px #f50136;
+  background-color: #F2D91A;
+  border: solid 1px #F2D91A;
   color: #ffffff;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
@@ -2277,7 +2482,8 @@ Cover
 }
 
 .inner_cover {
-  min-height: 400px;
+  min-height: 250px;
+    max-height: 735px;
   position: relative;
   background-position: center center;
   background-size: cover;
@@ -2361,7 +2567,7 @@ Cover
   padding: 13px;
   font-size: 12px;
   font-weight: 600;
-  color: #f50136;
+  color: #F2D91A;
 }
 
 @media (max-width: 767px) {
@@ -2409,7 +2615,7 @@ Cover
   margin-top: -10px;
   padding: 0 15px;
   font-size: 72px;
-  color: #f50136;
+  color: #F2D91A;
   vertical-align: middle;
   border-radius: 4px;
   display: block;
@@ -2430,7 +2636,7 @@ Cover
   transition: all 0.4s ease-in-out;
 }
 .icon_box_one .content a {
-  color: #f50136;
+  color: #F2D91A;
   font-size: 14px;
   font-weight: 600;
   text-transform: capitalize;
@@ -2479,7 +2685,7 @@ Cover
   left: 0;
   font-size: 56px;
   width: 50px;
-  color: #f50136;
+  color: #F2D91A;
   top: 0;
   bottom: auto;
   line-height: 1;
@@ -2498,11 +2704,81 @@ Cover
   font-weight: 500;
   color: #838383;
 }
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .flex-container{
+  height: 100%;
+        margin: 45px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+}
+/* Styles */
+}
+.flex-container{
+  height: 200%;
+  display: flex;
+  flex-direction: column;
+}
+
+svg {
+
+
+    font: 10.5em 'Montserrat';
+  width: 100%;
+    height: auto;
+    margin: -1% 10% 6.6% 2%;
+}
+#im{
+  margin-left: 10%;
+
+
+}
+.text-copy {
+    fill: none;
+    stroke: yellow;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+	stroke: #4D163D;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: #840037;
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: #BD0034;
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: #BD0034;
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: #FDB731;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
 /*  ----------------------------------------------------
 6 speakers
 -------------------------------------------------------- */
 .speaker_box {
+
+
   position: relative;
   overflow: hidden;
 }
@@ -2662,7 +2938,11 @@ Cover
   transition: all ease-in-out 0.4s;
 }
 
-/*  ----------------------------------------------------
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*Glimpse animation*/
+
+-----------------------------------------
 
 /*  ----------------------------------------------------
 7 Event box
@@ -2675,33 +2955,55 @@ Cover
   margin: 30px 0;
 }
 .event_box .event_info .event_title {
-  font-size: 36px;
+  font-size: 50px;
+  text-align: center;
   font-weight: 700;
   text-transform: uppercase;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, #fff, #000);
   color: #18181c;
   position: relative;
   padding: 15px 0;
   line-height: 1.3;
+  background-size: 80%;
+  animation: animate 7s linear infinite ;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
 }
 .event_box .event_info .event_title:before {
-  width: 30px;
+  width: 40px;
   content: " ";
-  position: absolute;
-  border-top: solid 4px #f50136;
+  position: relative;
+  border-top: solid 4px #F2D91A;
   left: 0;
   top: 0;
 }
 .event_box .event_info .speakers strong {
   font-size: 14px;
+  margin-left: auto;
+text-align: center;
   font-weight: 700;
+
   color: #18181c;
 }
 .event_box .event_info .speakers span {
   font-size: 14px;
+  margin-left: auto;
+text-align: center;
   font-weight: 400;
 }
 .event_box .event_info .event_date {
-  color: #f50136;
+  color: #F2D91A;
+  margin-left: auto;
+text-align: center;
   font-size: 12px;
   font-weight: 700;
 }
@@ -2752,7 +3054,7 @@ Cover
   min-width: 1000px;
 }
 .table.event_calender thead.event_title {
-  background-color: #f50136;
+  background-color: #F2D91A;
   color: #ffffff;
   border: 0;
 }
@@ -2811,7 +3113,7 @@ Cover
 .table.event_calender tbody td.buy_link a {
   text-transform: capitalize;
   font-weight: 600;
-  color: #f50136;
+  color: #F2D91A;
   text-decoration: underline;
   line-height: 24px;
   -webkit-transition: all ease-in-out 0.4s;
